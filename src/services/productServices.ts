@@ -1,5 +1,6 @@
 import Product from '../models/Product';
 const readlineSync = require('readline-sync');
+import logger from '../Logs/logger';
 
 
 function displayProducts(products: Product[]) : void {
@@ -7,6 +8,7 @@ function displayProducts(products: Product[]) : void {
     products.forEach((product) => {
         console.log(product);
     });
+    logger.info("All products displayed");
 }
 
 function deleteProduct(product: Product, products: Product[]) : Product[] {
@@ -17,9 +19,11 @@ function deleteProduct(product: Product, products: Product[]) : Product[] {
             console.log("Product removed successfully");
             return products.filter((prod) => prod.id !== product.id);
         }
-        catch(error) {
-            console.log(error);
+        catch(error: any) {
+            console.log(error.message);
+            logger.error(error.message);
         }
+        logger.info("Product removed");
     }
     return products;
 }
@@ -32,15 +36,18 @@ function searchProduct(products: Product[], productName: string) : Product[] {
         console.log(product);
         products = deleteProduct(product, products);
     }
-    catch(error) {
-        console.log(error);
+    catch(error : any) {
+        logger.error(error.message);
+        console.log(error.message);
     }
+    logger.info("Product searched");
     return products;
 }
 
 function addProduct(products: Product[], product: Product) : Product[] {
     console.log("Adding product: " + product.name);
     console.log("Product added successfully");
+    logger.info("Product added");
     return [...products, product];
 }
 
