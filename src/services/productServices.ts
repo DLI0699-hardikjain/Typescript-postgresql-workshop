@@ -1,6 +1,6 @@
 import Product from '../models/Product';
 const readlineSync = require('readline-sync');
-import logger from '../Logs/logger';
+import logger from '../logs/logger';
 
 
 function displayProducts(products: Product[]) : void {
