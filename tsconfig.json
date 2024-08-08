@@ -1,6 +1,6 @@
 {
   "include": ["src"],
-  "exclude": ["node_modules", "db"],
+  "exclude": ["db"],
   "compilerOptions": {
     "outDir": "./build",
     "experimentalDecorators": true,
