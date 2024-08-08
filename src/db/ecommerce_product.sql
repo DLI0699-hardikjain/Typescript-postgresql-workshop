@@ -1,24 +1,51 @@
-CREATE TABLE product (
+create table product (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     description TEXT,
     price NUMERIC(10,2)
 );
 
-CREATE TABLE backup AS TABLE product WITH NO DATA;
+insert into product(name, description, price) values('boatrockerz', 'headphones', 2500);
+select * from product;
+select * from product
+create table backup as table product with no data;
 
-CREATE OR REPLACE FUNCTION backup_deleted_product()
-RETURNS TRIGGER AS $$
-BEGIN
-    INSERT INTO backup SELECT OLD.*;
-    RETURN OLD;
-END;
-$$ LANGUAGE plpgsql;
+create or replace function backup_deleted_product()
+returns trigger as $$
+begin
+    insert into backup select OLD.*;
+    return OLD;
+end;
+$$ language plpgsql;
 
-CREATE TRIGGER backup_product_delete
-BEFORE DELETE ON product
-FOR EACH ROW EXECUTE PROCEDURE backup_deleted_product();
+create trigger backup_product_delete
+before delete on product
+for each row execute procedure backup_deleted_product();
 
-UPDATE product SET price = 200.00 WHERE id = 1;
+create table product_updates (
+    id SERIAL,
+    name VARCHAR(100),
+    description TEXT,
+    price NUMERIC(10,2),
+	time_ timestamp 
+);
+drop table product_updates;
+create or replace function update_product()
+returns trigger as $$
+begin
+    insert into product_updates select OLD.*, CURRENT_TIMESTAMP;
+    return NEW;
+end;
+$$ language plpgsql;
 
+create trigger update_product
+before update on product
+for each row execute procedure update_product();
 
+update product set price = 2500.00 where id = 1;
+
+select * from product_updates
+select * from product
+
+delete from product;
+select * from backup;
