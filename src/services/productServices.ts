@@ -1,6 +1,8 @@
 import Product from '../models/Product';
-const readlineSync = require('readline-sync');
 import logger from '../logs/logger';
+import addData from './addData';
+import deleteData from './deleteData';
+const readlineSync = require('readline-sync');
 
 
 function displayProducts(products: Product[]) : void {
@@ -16,6 +18,7 @@ function deleteProduct(product: Product, products: Product[]) : Product[] {
         try {
             if(!product.available) throw new Error("Product is not available");
             product.available = false;
+            deleteData(product.id);
             console.log("Product removed successfully");
             return products.filter((prod) => prod.id !== product.id);
         }
@@ -46,7 +49,7 @@ function searchProduct(products: Product[], productName: string) : Product[] {
 
 function addProduct(products: Product[], product: Product) : Product[] {
     console.log("Adding product: " + product.name);
-    console.log("Product added successfully");
+    addData(product);
     logger.info("Product added");
     return [...products, product];
 }

@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Shirt",
+      "price": 1000,
+      "description": "A nice shirt",
+      "category": "Clothing",
+      "brand": "Nike",
+      "available": true
+    },
+    {
+      "id": "2",
+      "name": "Shoes",
+      "price": 2000,
+      "description": "A nice pair of shoes",
+      "category": "Footwear",
+      "brand": "Adidas",
+      "available": true
+    },
+    {
+      "id": "3",
+      "name": "Mobile",
+      "price": 10000,
+      "description": "A nice mobile",
+      "category": "Electronics",
+      "brand": "Samsung",
+      "available": true
+    },
+    {
+      "id": "4",
+      "name": "Laptop",
+      "price": 50000,
+      "description": "A nice laptop",
+      "category": "Electronics",
+      "brand": "Dell",
+      "available": true
+    },
+    {
+      "id": "5",
+      "name": "Watch",
+      "price": 4500,
+      "description": "A nice watch",
+      "category": "Accessories",
+      "brand": "Titan",
+      "available": true
+    }
+  ]
+}

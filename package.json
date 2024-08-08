@@ -4,12 +4,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
+    "start_db" : "npx json-server src/db/db.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "json-server": "^1.0.0-beta.1",
     "readline-sync": "^1.4.10",
     "winston": "^3.14.0"
   },
